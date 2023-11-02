@@ -24,6 +24,7 @@ void setup() {
 void loop() {
   if(millies()-timer1>=1000){
     RPM = (encoder_counter / holes_wheel) * 60;
+    timer = millies();
   }
   
   Serial.print("RPM = ");
