@@ -19,7 +19,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/src/localization/CMakeLists.txt"
   "/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/src/localization/package.xml"
   "/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/src/localization/scripts/listener.py"
-  "/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/src/localization/scripts/talker.py"
+  "/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/src/localization/scripts/sonar.py"
   "/opt/ros/noetic/share/catkin/cmake/all.cmake"
   "/opt/ros/noetic/share/catkin/cmake/assert.cmake"
   "/opt/ros/noetic/share/catkin/cmake/atomic_configure_file.cmake"
