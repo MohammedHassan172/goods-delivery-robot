@@ -1,56 +1,78 @@
 #!/usr/bin/env python3
-# Software License Agreement (BSD License)
-#
-# Copyright (c) 2008, Willow Garage, Inc.
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-#  * Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-#  * Redistributions in binary form must reproduce the above
-#    copyright notice, this list of conditions and the following
-#    disclaimer in the documentation and/or other materials provided
-#    with the distribution.
-#  * Neither the name of Willow Garage, Inc. nor the names of its
-#    contributors may be used to endorse or promote products derived
-#    from this software without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-# Revision $Id$
-
-## Simple talker demo that published std_msgs/Strings messages
-## to the 'chatter' topic
-
 import rospy
-from std_msgs.msg import String
+from std_msgs.msg import *
+from geometry_msgs.msg import *
+from sensor_msgs.msg import LaserScan
+from tf.transformations import euler_from_quaternion
+import numpy as np
+import time
+from itertools import count
 
-def talker():
-    pub = rospy.Publisher('chatter', String, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(10) # 10hz
+index = count(step=1)  #### time counter 
+
+pub_laser=rospy.Publisher("sonar_laser", LaserScan, queue_size=100)
+pub_servo=rospy.Publisher("servo", UInt16  , queue_size=10)
+
+w1 = 0
+a=[0]
+def callback1(data):
+    global w1
+    q=data.data
+    w=q/100
+    if w>4:
+        w=4
+    elif w==0:
+        w=0.01
+    w1=round(w,3)
+    print(w1)
+
+
+scan_time=0.1
+def laser():
+    global w1
+    #now = rospy.get_rostime()
+    time_begin = rospy.Time.now()
+    r = rospy.Rate(10) # 10hz
+    b=a*180
     while not rospy.is_shutdown():
-        hello_str = "hello world %s" % rospy.get_time()
-        rospy.loginfo(hello_str)
-        pub.publish(hello_str)
-        rate.sleep()
+        time_end = rospy.Time.now()
+        for i in range(180):
+            pub_servo.publish(i)
+            
+            time.sleep(scan_time)
+            #b.insert(i,w1)
+            b[i]=w1
+            laser=LaserScan()
+            Time=next(index)
+            d=time_end-time_begin
+            laser.header.seq=d
+            laser.header.stamp=time_end
+            laser.header.frame_id='sonar'
+            laser.angle_min= 0*np.pi/180
+            laser.angle_max= 165*np.pi/180
+            laser.angle_increment= np.pi/180
+            laser.time_increment= 0.001
+            laser.scan_time= 0.001
+            laser.range_min= 0.01
+            laser.range_max= 4
+            laser.ranges=b
+            laser.intensities=[]
+            pub_laser.publish(laser)
+
+    if i==180:
+        pub_servo.publish(0)
+        #b=b  
+    r.sleep()
+
+rospy.Subscriber('/sonar', Float64, callback1)
+
+
+rospy.init_node('laser', anonymous=True)
+
 
 if __name__ == '__main__':
     try:
-        talker()
+        laser()
     except rospy.ROSInterruptException:
         pass
+

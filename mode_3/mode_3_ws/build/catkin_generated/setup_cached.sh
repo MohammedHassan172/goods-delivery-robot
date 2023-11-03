@@ -7,7 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/devel:$CMAKE_PREFIX_PATH"
 export PWD='/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/src:$ROS_PACKAGE_PATH"
