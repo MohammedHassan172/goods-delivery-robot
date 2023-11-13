@@ -7,10 +7,10 @@
 // RemoteXY connection settings 
 #define REMOTEXY_SERIAL Serial
 #define REMOTEXY_SERIAL_SPEED 115200
-#define REMOTEXY_WIFI_SSID "WiFi RoBot"
-#define REMOTEXY_WIFI_PASSWORD "123456789"
+#define REMOTEXY_WIFI_SSID "move"
+#define REMOTEXY_WIFI_PASSWORD "12345678"
 #define REMOTEXY_SERVER_PORT 6377
-#define REMOTEXY_ACCESS_PASSWORD "123456789"
+//#define REMOTEXY_ACCESS_PASSWORD "123456789"
 
 
 // RemoteXY configurate  
@@ -49,7 +49,7 @@ struct {
 //define two arrays with list of pins each other
 
 uint8_t Right_Motor[3] = {robot_RIGHT_motor1,robot_RIGHT_motor2,RIGHT_motor_speed};
-uint8_t LEFT_Motor [3]= {robot_LEFT_motor1,robot_LEFT_motor2,LEFT_motor_speed };
+uint8_t LEFT_Motor[3]= {robot_LEFT_motor1,robot_LEFT_motor2,LEFT_motor_speed };
 
 //Speed control of motors
 void Wheel (uint8_t * motor,int v)// v=motor speed control=pointer to an array of pins
@@ -60,6 +60,7 @@ void Wheel (uint8_t * motor,int v)// v=motor speed control=pointer to an array o
   {
     digitalWrite (motor [0],HIGH);
     digitalWrite (motor [1],LOW);
+    digitalWrite (13,HIGH);
     analogWrite (motor [2],v * 2.55);
     
   }
@@ -67,6 +68,7 @@ void Wheel (uint8_t * motor,int v)// v=motor speed control=pointer to an array o
   {
     digitalWrite (motor [0],LOW);
     digitalWrite (motor [1],HIGH);
+    digitalWrite (13,LOW);
     analogWrite (motor [2], (-v) * 2.55);
     
     
@@ -89,6 +91,7 @@ pinMode (robot_LEFT_motor1,OUTPUT);
 pinMode (robot_LEFT_motor2,OUTPUT);
 pinMode (robot_RIGHT_motor1,OUTPUT);
 pinMode (robot_RIGHT_motor2,OUTPUT);
+pinMode (13,OUTPUT);
   
   // TODO you setup code
   
