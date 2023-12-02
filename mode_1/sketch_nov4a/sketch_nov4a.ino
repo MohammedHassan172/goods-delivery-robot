@@ -36,15 +36,15 @@ struct {
 //           END RemoteXY include          //
 /////////////////////////////////////////////
 
-//define MOTOR Controlling pins
-#define robot_LEFT_motor1 4
-#define robot_LEFT_motor2 5
-#define LEFT_motor_speed 10
+//define MOTOR Controlling pins  postive == 0 //negatavie == 1
+#define robot_LEFT_motor1 8    //8
+#define robot_LEFT_motor2 9    //9
+#define LEFT_motor_speed 5
 
 //define RIGHT Motor pins
-#define robot_RIGHT_motor1 6
-#define robot_RIGHT_motor2 7
-#define RIGHT_motor_speed 11
+#define robot_RIGHT_motor1 10  //10
+#define robot_RIGHT_motor2 11  //11
+#define RIGHT_motor_speed 6
 
 //define two arrays with list of pins each other
 
@@ -54,22 +54,21 @@ uint8_t LEFT_Motor[3]= {robot_LEFT_motor1,robot_LEFT_motor2,LEFT_motor_speed };
 //Speed control of motors
 void Wheel (uint8_t * motor,int v)// v=motor speed control=pointer to an array of pins
 {
+  // Serial.println(v);
   if (v > 100) v=100;
-  if (v <-100) v=100;
+  if (v <-100) v=-100;
   if (v > 0)
   {
     digitalWrite (motor [0],HIGH);
     digitalWrite (motor [1],LOW);
-    digitalWrite (13,HIGH);
-    analogWrite (motor [2],v * 2.55);
+    analogWrite (motor [2],v * 1.20);
     
   }
   else if(v<0)
   {
     digitalWrite (motor [0],LOW);
     digitalWrite (motor [1],HIGH);
-    digitalWrite (13,LOW);
-    analogWrite (motor [2], (-v) * 2.55);
+    analogWrite (motor [2], (-v) * 1.20);
     
     
   }
@@ -91,7 +90,7 @@ pinMode (robot_LEFT_motor1,OUTPUT);
 pinMode (robot_LEFT_motor2,OUTPUT);
 pinMode (robot_RIGHT_motor1,OUTPUT);
 pinMode (robot_RIGHT_motor2,OUTPUT);
-pinMode (13,OUTPUT);
+//Serial.begin(9600);
   
   // TODO you setup code
   
@@ -99,6 +98,7 @@ pinMode (13,OUTPUT);
 
 void loop() 
 { 
+  // Serial.println("hello");
   RemoteXY_Handler ();
   
   
