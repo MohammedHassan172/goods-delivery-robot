@@ -132,6 +132,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/gtest/cmake_install.cmake")
   include("/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/localization/cmake_install.cmake")
+  include("/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/bondk/bondk_desc/cmake_install.cmake")
+  include("/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/bondk/bondk_gazebo/cmake_install.cmake")
 
 endif()
 

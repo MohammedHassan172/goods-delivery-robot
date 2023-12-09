@@ -6,3 +6,5 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("localization")
+subdirs("bondk/bondk_desc")
+subdirs("bondk/bondk_gazebo")

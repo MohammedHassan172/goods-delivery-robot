@@ -33,7 +33,7 @@ def laser():
     #now = rospy.get_rostime()
     time_begin = rospy.Time.now()
     r = rospy.Rate(10) # 10hz
-    b=a*180
+    b=a*360
     while not rospy.is_shutdown():
         time_end = rospy.Time.now()
         for i in range(180):
@@ -42,6 +42,7 @@ def laser():
             time.sleep(scan_time)
             #b.insert(i,w1)
             b[i]=w1
+            b[i + 180]=w1            # other ultra sonic go there.
             laser=LaserScan()
             Time=next(index)
             d=time_end-time_begin
