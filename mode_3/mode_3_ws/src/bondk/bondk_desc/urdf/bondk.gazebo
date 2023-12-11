@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
  
  <robot>
- <!-- camera -->
+ <!-- camera
   <gazebo reference="camera_link">
     <material>Gazebo/Red</material>
     <sensor type="camera" name="camera1">
@@ -19,9 +19,8 @@
         </clip>
         <noise>
           <type>gaussian</type>
-          <!-- Noise is sampled independently per pixel on each frame.
-               That pixel's noise value is added to each of its color
-               channels, which at that point lie in the range [0,1]. -->
+        
+
           <mean>0.0</mean>
           <stddev>0.007</stddev>
         </noise>
@@ -41,49 +40,11 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
 
-  <gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <legacyMode>false</legacyMode>
-      <alwaysOn>true</alwaysOn>
-      <updateRate>10</updateRate>
-      <leftJoint>left_wheel_hinge</leftJoint>
-      <rightJoint>right_wheel_hinge</rightJoint>
-      <wheelSeparation>0.26</wheelSeparation>
-      <wheelDiameter>0.2</wheelDiameter>
-      <torque>30</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_link</robotBaseFrame>
-    </plugin>
-  </gazebo>
 
-  <gazebo reference = "chassis">
-    <material>
-      Gazebo/Green
-    </material>
-
-  </gazebo>
-
-  <gazebo reference = "right_wheel">
-    <material>
-      Gazebo/Black
-    </material>
-
-  </gazebo>
-
-
-  <gazebo reference = "left_wheel">
-    <material>
-      Gazebo/Black
-    </material>
-
-  </gazebo>
-
-  <!-- hokuyo -->
+<!-- hokuyo -->
   <gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -136,13 +97,59 @@
         <gaussianNoise>0.0</gaussianNoise>
         <xyzOffset>0 0 0</xyzOffset>
         <rpyOffset>0 0 0</rpyOffset>
-        <frameName>imu_link</frameName>
+        <frameName>base_link</frameName>
         <initialOrientationAsReference>false</initialOrientationAsReference>
       </plugin>
       <pose>0 0 0 0 0 0</pose>
     </sensor>
   </gazebo>
 
+
+
+
+
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <legacyMode>false</legacyMode>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10</updateRate>
+      <publishOdomTF>false</publishOdomTF>
+      <leftJoint>left_wheel_hinge</leftJoint>
+      <rightJoint>right_wheel_hinge</rightJoint>
+      <wheelSeparation>0.26</wheelSeparation>
+      <wheelDiameter>0.2</wheelDiameter>
+      <torque>30</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference = "chassis">
+    <material>
+      Gazebo/Green
+    </material>
+
+  </gazebo>
+
+  <gazebo reference = "right_wheel">
+    <material>
+      Gazebo/Black
+    </material>
+
+  </gazebo>
+
+
+  <gazebo reference = "left_wheel">
+    <material>
+      Gazebo/Black
+    </material>
+
+  </gazebo>
+
+  
 
 
 

@@ -2,8 +2,8 @@
 
 <robot name="bondk" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="cameraSize" value="0.05"/>
-  <xacro:property name="cameraMass" value="0.1"/>
+  <!-- <xacro:property name="cameraSize" value="0.05"/>
+  <xacro:property name="cameraMass" value="0.1"/> -->
   
   <xacro:include filename="$(find bondk_desc)/urdf/materials.xacro"/>
   <xacro:include filename="$(find bondk_desc)/urdf/bondk.gazebo"/>
@@ -153,7 +153,7 @@
   </joint>
 
 
-  <!-- Camera -->
+  <!-- Camera
   <link name="camera_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -183,7 +183,7 @@
     <origin xyz="0.2 0 0" rpy="0 0 0"/>
     <parent link="chassis"/>
     <child link="camera_link"/>
-  </joint>
+  </joint> -->
 
 
 
