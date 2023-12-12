@@ -1,5 +1,6 @@
 <launch>
     <include file="$(find localization)/launch/robot_localization.launch"/>
+    <include file="$(find localization)/launch/gmapping.launch"/>
     <include file="$(find localization)/launch/hector_mapping.launch"/>
     <!-- <include file="$(find localization)/launch/amcl.launch"/> -->
     <include file="$(find bondk_gazebo)/launch/bondk_gazebo.launch"/>
