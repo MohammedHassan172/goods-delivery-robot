@@ -1,0 +1,12 @@
+<launch>
+    <include file="$(find localization)/launch/robot_localization.launch"/>
+    <include file="$(find localization)/launch/hector_mapping.launch"/>
+    <!-- <include file="$(find localization)/launch/amcl.launch"/> -->
+    <include file="$(find bondk_gazebo)/launch/bondk_gazebo.launch"/>
+    <include file="$(find bondk_desc)/launch/rviz.launch"/>
+
+
+    <!-- <node pkg="bondk_desc" type="al3ab_ya_bonk.py" name="al3ab"/> -->
+
+
+</launch>

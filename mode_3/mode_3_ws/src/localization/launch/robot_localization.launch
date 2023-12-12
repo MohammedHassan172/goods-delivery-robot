@@ -4,7 +4,7 @@
 
 
       <!-- the number of estimation per secound -->
-      <param name="frequency"      value="30"/>
+      <param name="frequency"      value="40"/>
 
       <!-- ecah 0.2 sec the package will expect an input from the sensor if not it will consider it as being out -->
       <param name="sensor_timeout" value="0.2"/>

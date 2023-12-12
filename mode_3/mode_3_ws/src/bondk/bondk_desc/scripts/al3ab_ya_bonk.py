@@ -5,6 +5,7 @@ import rospy
 from geometry_msgs.msg import Twist
 import keyboard
 s_s = 0.5
+# step = 0.001
 
 bonk_twist = Twist()
 def speed():
