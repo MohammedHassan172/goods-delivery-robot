@@ -15,10 +15,11 @@
         
         <!-- <rmap name="scan" value="scan"/> -->
         <param name="transform_publish_period" value="0"/>
+        <param name="map_update_interval" value="3"/>
 
 
-        <param name="linearUpdate" value="0.1"/>
-        <param name="angularUpdate" value="0.1"/>
+        <param name="linearUpdate" value="0.001"/>
+        <param name="angularUpdate" value="0.001"/>
 
         <param name="particles" value="80"/>
     
