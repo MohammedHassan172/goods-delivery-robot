@@ -57,6 +57,7 @@ all: gtest/all
 all: localization/all
 all: bondk/bondk_desc/all
 all: bondk/bondk_gazebo/all
+all: control/all
 
 .PHONY : all
 
@@ -65,6 +66,7 @@ preinstall: gtest/preinstall
 preinstall: localization/preinstall
 preinstall: bondk/bondk_desc/preinstall
 preinstall: bondk/bondk_gazebo/preinstall
+preinstall: control/preinstall
 
 .PHONY : preinstall
 
@@ -78,6 +80,7 @@ clean: gtest/clean
 clean: localization/clean
 clean: bondk/bondk_desc/clean
 clean: bondk/bondk_gazebo/clean
+clean: control/clean
 
 .PHONY : clean
 
@@ -189,6 +192,24 @@ bondk/bondk_gazebo/preinstall:
 bondk/bondk_gazebo/clean: bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/clean
 
 .PHONY : bondk/bondk_gazebo/clean
+
+#=============================================================================
+# Directory level rules for directory control
+
+# Recursive "all" directory target.
+control/all: control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/all
+
+.PHONY : control/all
+
+# Recursive "preinstall" directory target.
+control/preinstall:
+
+.PHONY : control/preinstall
+
+# Recursive "clean" directory target.
+control/clean: control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/clean
+
+.PHONY : control/clean
 
 #=============================================================================
 # Directory level rules for directory gtest
@@ -2952,6 +2973,33 @@ bondk_gazebo_xacro_generated_to_devel_space_: bondk/bondk_gazebo/CMakeFiles/bond
 bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/clean:
 	$(MAKE) -f bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/build.make bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/clean
 .PHONY : bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/clean
+
+#=============================================================================
+# Target rules for target control/CMakeFiles/control_xacro_generated_to_devel_space_.dir
+
+# All Build rule for target.
+control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/all:
+	$(MAKE) -f control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/build.make control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/depend
+	$(MAKE) -f control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/build.make control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/CMakeFiles --progress-num= "Built target control_xacro_generated_to_devel_space_"
+.PHONY : control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/all
+
+# Build rule for subdir invocation for target.
+control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/CMakeFiles 0
+.PHONY : control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/rule
+
+# Convenience name for target.
+control_xacro_generated_to_devel_space_: control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/rule
+
+.PHONY : control_xacro_generated_to_devel_space_
+
+# clean rule for target.
+control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/clean:
+	$(MAKE) -f control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/build.make control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/clean
+.PHONY : control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

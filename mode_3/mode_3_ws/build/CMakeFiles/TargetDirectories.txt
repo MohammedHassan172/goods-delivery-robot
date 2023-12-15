@@ -146,3 +146,11 @@
 /home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/bondk/bondk_gazebo/CMakeFiles/list_install_components.dir
 /home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/bondk/bondk_gazebo/CMakeFiles/rebuild_cache.dir
 /home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/install/strip.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/install/local.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/install.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/list_install_components.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/rebuild_cache.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/edit_cache.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/test.dir
+/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/build/control/CMakeFiles/control_xacro_generated_to_devel_space_.dir

@@ -1454,6 +1454,19 @@ bondk_gazebo_xacro_generated_to_devel_space_/fast:
 	$(MAKE) -f bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/build.make bondk/bondk_gazebo/CMakeFiles/bondk_gazebo_xacro_generated_to_devel_space_.dir/build
 .PHONY : bondk_gazebo_xacro_generated_to_devel_space_/fast
 
+#=============================================================================
+# Target rules for targets named control_xacro_generated_to_devel_space_
+
+# Build rule for target.
+control_xacro_generated_to_devel_space_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 control_xacro_generated_to_devel_space_
+.PHONY : control_xacro_generated_to_devel_space_
+
+# fast build rule for target.
+control_xacro_generated_to_devel_space_/fast:
+	$(MAKE) -f control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/build.make control/CMakeFiles/control_xacro_generated_to_devel_space_.dir/build
+.PHONY : control_xacro_generated_to_devel_space_/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1566,6 +1579,7 @@ help:
 	@echo "... actionlib_generate_messages_eus"
 	@echo "... trajectory_msgs_generate_messages_py"
 	@echo "... bondk_gazebo_xacro_generated_to_devel_space_"
+	@echo "... control_xacro_generated_to_devel_space_"
 .PHONY : help
 
 

@@ -1,2 +1,2 @@
-bondk/bondk_desc:bondk/bondk_gazebo:localization
+bondk/bondk_desc:bondk/bondk_gazebo:control:localization
 -DCATKIN_DEVEL_PREFIX=/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mohammed/goods-delivery-robot/mode_3/mode_3_ws/install -G Unix Makefiles
