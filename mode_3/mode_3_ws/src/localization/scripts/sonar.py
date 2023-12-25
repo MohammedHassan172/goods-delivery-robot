@@ -13,36 +13,48 @@ index = count(step=1)  #### time counter
 pub_laser=rospy.Publisher("sonar_laser", LaserScan, queue_size=100)
 pub_servo=rospy.Publisher("servo", UInt16  , queue_size=10)
 
-w1 = 0
+w_list = [0,0,0,0]
 a=[0]
 def callback1(data):
-    global w1
-    q=data.data
-    w=q/100
-    if w>4:
-        w=4
-    elif w==0:
-        w=0.01
-    w1=round(w,3)
-    print(w1)
+    global w_list
+    for i in range(3):
+        q=data.data[i]
+        w=q/100
+        if w>4:
+            w=4
+        elif w==0:
+            w=0.01
+        w_list[i]=round(w,3)
+        # print(w1)
+
+    # q=data.data
+    # w=q/100
+    # if w>4:
+    #     w=4
+    # elif w==0:
+    #     w=0.01
+    # w1=round(w,3)
+    # print(w1)
 
 
 scan_time=0.1
 def laser():
-    global w1
+    global w_list
     #now = rospy.get_rostime()
     time_begin = rospy.Time.now()
     r = rospy.Rate(10) # 10hz
     b=a*360
     while not rospy.is_shutdown():
         time_end = rospy.Time.now()
-        for i in range(180):
+        for i in range(90):
             pub_servo.publish(i)
             
             time.sleep(scan_time)
             #b.insert(i,w1)
-            b[i]=w1
-            b[i + 180]=w1            # other ultra sonic go there.
+            b[i]=w_list[0]
+            b[i + 90]=w_list[1]            # other ultra sonic go there.
+            b[i + 180]=w_list[2]
+            b[i + 270]=w_list[3]
             laser=LaserScan()
             Time=next(index)
             d=time_end-time_begin
@@ -60,12 +72,12 @@ def laser():
             laser.intensities=[]
             pub_laser.publish(laser)
 
-    if i==180:
+    if i==90:
         pub_servo.publish(0)
         #b=b  
     r.sleep()
 
-rospy.Subscriber('/sonar', Float64, callback1)
+rospy.Subscriber('/sonar', Float64MultiArray, callback1)
 
 
 rospy.init_node('laser', anonymous=True)
