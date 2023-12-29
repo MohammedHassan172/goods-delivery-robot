@@ -54,7 +54,7 @@ uint8_t LEFT_Motor[3]= {robot_LEFT_motor1,robot_LEFT_motor2,LEFT_motor_speed };
 //Speed control of motors
 void Wheel (uint8_t * motor,int v)// v=motor speed control=pointer to an array of pins
 {
-  // Serial.println(v);
+  
   if (v > 100) v=100;
   if (v <-100) v=-100;
   if (v > 0)
@@ -90,19 +90,13 @@ pinMode (robot_LEFT_motor1,OUTPUT);
 pinMode (robot_LEFT_motor2,OUTPUT);
 pinMode (robot_RIGHT_motor1,OUTPUT);
 pinMode (robot_RIGHT_motor2,OUTPUT);
-//Serial.begin(9600);
-  
-  // TODO you setup code
-  
 }
 
 void loop() 
 { 
-  // Serial.println("hello");
   RemoteXY_Handler ();
   
   
-//manage the motor
  Wheel (Right_Motor, RemoteXY.joystick_1_y - RemoteXY.joystick_1_x);
  Wheel (LEFT_Motor, RemoteXY.joystick_1_y + RemoteXY.joystick_1_x);
 
