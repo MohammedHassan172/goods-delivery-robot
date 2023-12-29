@@ -45,7 +45,7 @@
 
 
 <!-- hokuyo -->
-  <!-- <gazebo reference="hokuyo_link">
+  <gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
@@ -76,7 +76,7 @@
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>
-  </gazebo> -->
+  </gazebo>
 
 
 
