@@ -55,19 +55,19 @@ void setup() {
   nh.initNode();
   nh.advertise(pub_sonar);
   nh.subscribe(sub);
-  Distance.layout.dim = (std_msgs::MultiArrayDimension *) malloc(sizeof(std_msgs::MultiArrayDimension) * 4;
+  Distance.layout.dim = (std_msgs::MultiArrayDimension *) malloc(sizeof(std_msgs::MultiArrayDimension) * 4);
   Distance.layout.dim[0].label = "reads";
   Distance.layout.dim[0].size = 4;
   Distance.layout.dim[0].stride = 1 * 4;
   Distance.data = (float *)malloc(sizeof(float)*4);
   Distance.layout.dim_length = 0;
   Distance.data_length = 4;
-  // ESP32PWM::allocateTimer(0);
-	// ESP32PWM::allocateTimer(1);
-	// ESP32PWM::allocateTimer(2);
-	// ESP32PWM::allocateTimer(3);
-	// servo.setPeriodHertz(50); 
-  // // servo.attach(27, 1000, 2000); //attach it to pin 9
+  ESP32PWM::allocateTimer(0);
+	ESP32PWM::allocateTimer(1);
+	ESP32PWM::allocateTimer(2);
+	ESP32PWM::allocateTimer(3);
+	servo.setPeriodHertz(50); 
+  servo.attach(16, 1000, 2000); //attach it to pin 9
 }
 
 

@@ -10,14 +10,14 @@ from itertools import count
 
 index = count(step=1)  #### time counter 
 
-pub_laser=rospy.Publisher("sonar_laser", LaserScan, queue_size=100)
+pub_laser=rospy.Publisher("scan", LaserScan, queue_size=100)
 pub_servo=rospy.Publisher("servo", UInt16  , queue_size=10)
 
 w_list = [0,0,0,0]
 a=[0]
 def callback1(data):
     global w_list
-    for i in range(3):
+    for i in range(4):
         q=data.data[i]
         w=q/100
         if w>4:
@@ -60,9 +60,9 @@ def laser():
             d=time_end-time_begin
             laser.header.seq=d
             laser.header.stamp=time_end
-            laser.header.frame_id='sonar'
+            laser.header.frame_id='hokuyo_link'
             laser.angle_min= 0*np.pi/180
-            laser.angle_max= 165*np.pi/180
+            laser.angle_max= 355*np.pi/180
             laser.angle_increment= np.pi/180
             laser.time_increment= 0.001
             laser.scan_time= 0.001

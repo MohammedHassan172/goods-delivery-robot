@@ -45,7 +45,7 @@
 
 
 <!-- hokuyo -->
-  <gazebo reference="hokuyo_link">
+  <!-- <gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
@@ -66,10 +66,7 @@
         </range>
         <noise>
           <type>gaussian</type>
-          <!-- Noise parameters based on published spec for Hokuyo laser
-               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
-               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
-               reading. -->
+        
           <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
@@ -79,7 +76,7 @@
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
 
 
