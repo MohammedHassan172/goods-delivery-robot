@@ -1,7 +1,7 @@
 #include "Motor_moving.h"
 #include "linefollower.h"
-#define r_speed 86
-#define l_speed 86
+#define r_speed 80
+#define l_speed 80
 #define r_speed_f 90
 #define l_speed_f 90
 void forward()
@@ -16,7 +16,7 @@ void forward()
 /**********************************************************************************************/
 void reverse()
 {
-  analogWrite(Rmotor_speed,70);  
+  analogWrite(Rmotor_speed,);  
   analogWrite(Lmotor_speed,70);   
   digitalWrite(right_motor_p,LOW);
   digitalWrite(right_motor_N,HIGH);

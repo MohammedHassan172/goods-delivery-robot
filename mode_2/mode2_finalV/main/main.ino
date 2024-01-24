@@ -2,7 +2,7 @@
 
 
 int Bonnok_P_X = 1, Bonnok_P_Y = 1;
-int DIST_X = 1, DIST_Y = 3;
+int DIST_X = 3, DIST_Y = 3;
 int X_Flag = 0, Y_Flag = 1;
 int y = 0, x = 0;
 char negative_flag = 0 , particle_flag = 0 , one_x_flag = 0;
