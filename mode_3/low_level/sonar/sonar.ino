@@ -67,7 +67,7 @@ void setup() {
 	ESP32PWM::allocateTimer(2);
 	ESP32PWM::allocateTimer(3);
 	servo.setPeriodHertz(50); 
-  servo.attach(16, 1000, 2000); //attach it to pin 9
+  servo.attach(16); //attach it to pin 9
 }
 
 

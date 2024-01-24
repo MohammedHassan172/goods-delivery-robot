@@ -51,18 +51,18 @@ def laser():
             
             time.sleep(scan_time)
             #b.insert(i,w1)
-            b[i]=w_list[0]
+            b[i]=w_list[2]
             b[i + 90]=w_list[1]            # other ultra sonic go there.
-            b[i + 180]=w_list[2]
+            b[i + 180]=w_list[0]
             b[i + 270]=w_list[3]
             laser=LaserScan()
             Time=next(index)
             d=time_end-time_begin
             laser.header.seq=d
             laser.header.stamp=time_end
-            laser.header.frame_id='hokuyo_link'
+            laser.header.frame_id='scan5'
             laser.angle_min= 0*np.pi/180
-            laser.angle_max= 355*np.pi/180
+            laser.angle_max= 359*np.pi/180
             laser.angle_increment= np.pi/180
             laser.time_increment= 0.001
             laser.scan_time= 0.001
