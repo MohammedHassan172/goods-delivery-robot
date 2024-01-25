@@ -93,9 +93,12 @@ void y_move()
               avoid = LOW;
              }
 
-      if (err == 0)
+      if ((digitalRead(left)==black)&&(digitalRead(center)==black)&&(digitalRead(right)==black))
       {     
         forward();
+         // delay(300);   
+        y--;
+        Bonnok_P_Y += Y_Flag;
       }
 
       else if (err < 0) //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
@@ -107,12 +110,9 @@ void y_move()
       {      
         correct_right();
       }
-      else if ((digitalRead(left)==black)&&(digitalRead(center)==black)&&(digitalRead(right)==black))
+      else if (err == 0)
       {
         forward();
-        // delay(300);   
-        y--;
-        Bonnok_P_Y += Y_Flag;
       }
     }
 }
@@ -163,9 +163,12 @@ void x_move()
            }
       
 
-    if (err == 0)
+    if ((digitalRead(left)==black)&&(digitalRead(center)==black)&&(digitalRead(right)==black))
       {     
         forward();
+        // delay(300);    
+      x--;
+      Bonnok_P_X += X_Flag;
       }
 
       else if (err < 0) //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
@@ -177,12 +180,9 @@ void x_move()
       {      
         correct_right();
       }
-    else if ((digitalRead(left)==black)&&(digitalRead(center)==black)&&(digitalRead(right)==black))
+    else if (err == 0)
     {
       forward();
-      // delay(300);    
-      x--;
-      Bonnok_P_X += X_Flag;
     }
   }
 }
