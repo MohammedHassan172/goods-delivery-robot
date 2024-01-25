@@ -98,19 +98,19 @@ void y_move()
         forward();
       }
 
-      else if (err < 0)
+      else if (err < 0) //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
       {    
         correct_left();
       }
 
-      else if (err < 0)
+      else if (err > 0)
       {      
         correct_right();
       }
       else if ((digitalRead(left)==black)&&(digitalRead(center)==black)&&(digitalRead(right)==black))
       {
         forward();
-        delay(300);   
+        // delay(300);   
         y--;
         Bonnok_P_Y += Y_Flag;
       }
@@ -168,19 +168,19 @@ void x_move()
         forward();
       }
 
-      else if (err < 0)
+      else if (err < 0) //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
       {    
         correct_left();
       }
 
-      else if (err < 0)
+      else if (err > 0)
       {      
         correct_right();
       }
     else if ((digitalRead(left)==black)&&(digitalRead(center)==black)&&(digitalRead(right)==black))
     {
       forward();
-      delay(300);    
+      // delay(300);    
       x--;
       Bonnok_P_X += X_Flag;
     }

@@ -13,7 +13,7 @@ float out = 0;
 
 
 
-int sensor_reads[3];
+int sensor_reads[3] = {0,0,0};
 int max_read[3] = {0,0,0};
 int min_read[3] = {100,100,100};
 float err = 0;
