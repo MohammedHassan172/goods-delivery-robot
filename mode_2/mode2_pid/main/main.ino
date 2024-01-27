@@ -13,6 +13,8 @@ volatile bool avoid = LOW;
 Timer t;
 static void x_rotation();
 void ISR_avoid();
+#define margin 600
+#define margin_err 5
 
 
 void setup() {
@@ -55,15 +57,15 @@ void loop() {
 }
 
 /**********************************************************************************************/
-void ISR_avoid() {
-  if (y > 0) {
-    short_cut_y();
-    avoid = LOW;
-  } else if (x > 0) {
-    short_cut_x();
-    avoid = LOW;
-  }
-}
+// void ISR_avoid() {
+//   if (y > 0) {
+//     short_cut_y();
+//     avoid = LOW;
+//   } else if (x > 0) {
+//     short_cut_x();
+//     avoid = LOW;
+//   }
+// }
 /**********************************************************************************************/
 void y_move() {
   if (y < 0) {
@@ -77,26 +79,29 @@ void y_move() {
     t.update();
     Particle_Detecter();
     if (distance <= 8 && distance > 0) {
-      avoid = HIGH;
+      // avoid = HIGH;
+      short_cut_y();
     } else {
-      avoid = LOW;
+      // avoid = LOW;
     }
 
-    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black))  {
+    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
       forward();
-      delay(500);
+      delay(600);
       y--;
       Bonnok_P_Y += Y_Flag;
     }
 
-    else if (err < -10)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
+    else if (err < -margin_err)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
     {
       correct_left();
     }
 
-    else if (err > 10) {
+    else if (err > margin_err) {
       correct_right();
-    } else {
+    } 
+    else if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
+    {
       forward();
     }
   }
@@ -129,27 +134,32 @@ void x_move() {
     t.update();
     Particle_Detecter();
     if (distance <= 8 && distance > 0) {
-      avoid = HIGH;
-    } else {
-      avoid = LOW;
-    }
+      // avoid = HIGH;
+      short_cut_x();
+    } 
+    // else {
+    //   // avoid = LOW;
+    // }
 
 
-    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black))  {
+    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
       forward();
-      delay(500);
+      delay(600);
       x--;
       Bonnok_P_X += X_Flag;
     }
 
-    else if (err < -1)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
+    else if (err < -margin_err)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
     {
       correct_left();
     }
 
-    else if (err > 1) {
+    else if (err > margin_err) {
       correct_right();
-    } else {
+    } 
+    else if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
+    {
+      
       forward();
     }
   }
@@ -174,6 +184,9 @@ void parking() {
 void short_cut_y() {
   check_avoidence = 1;
   while (one_x_flag == 0) {
+    scaling();
+    cal_pos();
+    t.update();
     if ((digitalRead(left) == white) && (digitalRead(center) == black) && (digitalRead(right) == white)) {
       if (particle_flag == 0) {
         reverse();
@@ -183,22 +196,24 @@ void short_cut_y() {
       }
     }
 
-    if (err < 10)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
+    if (err > margin_err)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
     {
-      correct_left();
+      correct_right();
     }
 
-    else if (err > -10) {
-      correct_right();
-    } else {
+    else if (err < -margin_err) {
+      correct_left();
+    } 
+    else if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
+    {
       reverse();
     }
-    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black)) {
+    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
       if (particle_flag == 0) {
         stop();
         delay(500);
         forward();
-        delay(300);
+        delay(800);
         stop();
         delay(1000);
         if ((Y_Flag == 1) && (x > 0)) {
@@ -261,6 +276,9 @@ void short_cut_y() {
 void short_cut_x() {
   check_avoidence = 1;
   while (one_x_flag == 0) {
+    scaling();
+    cal_pos();
+    t.update();
     if ((digitalRead(left) == white) && (digitalRead(center) == black) && (digitalRead(right) == white)) {
       if (particle_flag == 0) {
         reverse();
@@ -270,22 +288,24 @@ void short_cut_x() {
       }
     }
 
-    if (err < 10)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
+    if (err > margin_err)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
     {
-      correct_left();
+      correct_right();
     }
 
-    else if (err > -10) {
-      correct_right();
-    } else {
+    else if (err < -margin_err) {
+      correct_left();
+    } 
+   else if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
+    {
       reverse();
     }
-    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black)) {
+    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
       if (particle_flag == 0) {
         stop();
         delay(500);
         forward();
-        delay(700);
+        delay(800);
         stop();
         delay(1000);
         if ((X_Flag == 1) && (Bonnok_P_Y < MAX_Y)) {
