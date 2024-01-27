@@ -32,7 +32,7 @@ void stop()
 void turn_R90()
 {
   correct_right();
-  delay(500);
+  delay(200);
   while(digitalRead(center)!=black)
   {  
   correct_right();
@@ -42,7 +42,7 @@ void turn_R90()
 void turn_L90()
 {
   correct_left();
-  delay(500);
+  delay(200);
   while(digitalRead(center)!=black)
   {
   correct_left();

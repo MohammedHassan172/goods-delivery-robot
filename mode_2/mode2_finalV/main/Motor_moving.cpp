@@ -16,7 +16,7 @@ void forward()
 /**********************************************************************************************/
 void reverse()
 {
-  analogWrite(Rmotor_speed,);  
+  analogWrite(Rmotor_speed,70);  
   analogWrite(Lmotor_speed,70);   
   digitalWrite(right_motor_p,LOW);
   digitalWrite(right_motor_N,HIGH);

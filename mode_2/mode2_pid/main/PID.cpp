@@ -1,3 +1,4 @@
+#include "HardwareSerial.h"
 #include "PID.h"
 /****************************************************************************************************************/
 
@@ -87,8 +88,11 @@ void scaling(){
       value = 1000;
     }
     sensor_reads[i] = value;
+    // Serial.print(sensor_reads[i]);
+    // Serial.print("\t");
 
   }
+  // Serial.print("\n");
 
 
 }
