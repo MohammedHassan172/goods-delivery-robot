@@ -16,8 +16,8 @@
 #define center  A1    
 #define left    A2
 
-#define base_speed 100
-#define max_speed 140
+#define base_speed 120
+#define max_speed 160
 
 /*************************Functions*************************************/
 

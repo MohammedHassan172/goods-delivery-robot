@@ -14,7 +14,7 @@ Timer t;
 static void x_rotation();
 void ISR_avoid();
 #define margin 600
-#define margin_err 5
+#define margin_err 3
 
 
 void setup() {
@@ -81,13 +81,11 @@ void y_move() {
     if (distance <= 8 && distance > 0) {
       // avoid = HIGH;
       short_cut_y();
-    } else {
-      // avoid = LOW;
     }
 
     if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
       forward();
-      delay(300);
+      delay(200);
       y--;
       Bonnok_P_Y += Y_Flag;
     }
@@ -146,7 +144,7 @@ void x_move() {
 
     if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
       forward();
-      delay(300);
+      delay(200);
       x--;
       Bonnok_P_X += X_Flag;
     }
@@ -220,7 +218,7 @@ void short_cut_y() {
         stop();
         delay(500);
         forward();
-        delay(800);
+        delay(600);
         stop();
         delay(1000);
         if ((Y_Flag == 1) && (x > 0)) {
@@ -265,6 +263,9 @@ void short_cut_y() {
         delay(500);
         x--;
         Bonnok_P_X += X_Flag;
+        scaling();
+        cal_pos();
+        t.update();
         if ((Y_Flag == 1) && (X_Flag == 1)) {
           turn_L90();
         } else if ((Y_Flag == 1) && (X_Flag == -1)) {

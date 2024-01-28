@@ -4,8 +4,8 @@
 
 void Set_Speed()
 {
-  analogWrite(Rmotor_speed,base_speed + (out*2));  
-  analogWrite(Lmotor_speed,base_speed + (out*2));
+  analogWrite(Rmotor_speed,base_speed + (out));  
+  analogWrite(Lmotor_speed,base_speed + (out));
 }
 
 /*************************************************************************************************/
