@@ -14,7 +14,7 @@ Timer t;
 static void x_rotation();
 void ISR_avoid();
 #define margin 600
-#define margin_err 30
+#define margin_err 5
 
 
 void setup() {
@@ -197,14 +197,19 @@ void short_cut_y() {
         forward();
       }
     }
-
     if (err > margin_err)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
     {
-      correct_right();
+     
+      
+        correct_right();
+      
     }
 
-    if (err < -margin_err) {
-      correct_left();
+    if (err < -margin_err) 
+    {
+      
+         correct_left();
+      
     } 
     // if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
     // {
@@ -215,7 +220,7 @@ void short_cut_y() {
         stop();
         delay(500);
         forward();
-        delay(500);
+        delay(800);
         stop();
         delay(1000);
         if ((Y_Flag == 1) && (x > 0)) {
@@ -257,7 +262,7 @@ void short_cut_y() {
       //////////////////////////////////////////////////////////////////////
       else if (particle_flag == 1) {
         forward();
-        delay(300);
+        delay(500);
         x--;
         Bonnok_P_X += X_Flag;
         if ((Y_Flag == 1) && (X_Flag == 1)) {
@@ -292,11 +297,18 @@ void short_cut_x() {
 
     if (err > margin_err)  //the comparison sign might be wrong if the "correct" functions names are the reverse of the actual movement.
     {
-      correct_right();
+      if(particle_flag == 1)
+      {
+        correct_right();
+      }
     }
 
-    if (err < -margin_err) {
-      correct_left();
+    if (err < -margin_err) 
+    {
+      if(particle_flag == 1)
+      {
+         correct_left();
+      }
     } 
     // if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
     // {
