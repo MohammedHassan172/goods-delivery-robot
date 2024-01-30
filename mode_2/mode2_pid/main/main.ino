@@ -83,9 +83,9 @@ void y_move() {
       short_cut_y();
     }
 
-    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
+    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black))   {
       forward();
-      delay(200);
+      delay(300);
       y--;
       Bonnok_P_Y += Y_Flag;
     }
@@ -98,7 +98,7 @@ void y_move() {
     if (err > margin_err) {
       correct_right();
     } 
-    if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
+    if((digitalRead(left) == white) && (digitalRead(center) == black) && (digitalRead(right) == white))  
     {
       forward();
     }
@@ -125,6 +125,9 @@ void x_rotation() {
 }
 /**********************************************************************************************/
 void x_move() {
+  //  scaling();
+  //   cal_pos();
+  //   t.update();
   x_rotation();
   particle_flag = 0 ;
   one_x_flag = 0;
@@ -142,9 +145,9 @@ void x_move() {
     // }
 
 
-    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
+    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black))  {
       forward();
-      delay(200);
+      delay(300);
       x--;
       Bonnok_P_X += X_Flag;
     }
@@ -157,7 +160,7 @@ void x_move() {
     if (err > margin_err) {
       correct_right();
     } 
-    if((sensor_reads[0] < margin) && (sensor_reads[1] > margin) && (sensor_reads[2] < margin)) 
+    if((digitalRead(left) == white) && (digitalRead(center) == black) && (digitalRead(right) == white))  
     {
       
       forward();
@@ -213,7 +216,7 @@ void short_cut_y() {
     // {
     //   reverse();
     // }
-    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
+    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black))  {
       if (particle_flag == 0) {
         stop();
         delay(500);
@@ -315,7 +318,7 @@ void short_cut_x() {
     // {
     //   reverse();
     // }
-    if ((sensor_reads[0] > margin) && (sensor_reads[1] > margin) && (sensor_reads[2] > margin))  {
+    if ((digitalRead(left) == black) && (digitalRead(center) == black) && (digitalRead(right) == black))   {
       if (particle_flag == 0) {
         stop();
         delay(500);
@@ -344,6 +347,9 @@ void short_cut_x() {
         delay(500);
         y--;
         Bonnok_P_Y += Y_Flag;
+        scaling();
+        cal_pos();
+        t.update();
         if ((Y_Flag == 1) && (X_Flag == 1)) {
           turn_R90();
         } else if ((Y_Flag == 1) && (X_Flag == -1)) {

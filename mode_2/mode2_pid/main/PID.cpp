@@ -145,16 +145,16 @@ err_abs = abs(err);
   derivative = (err_abs - err_prev) / (period_pid/1000.0);
 
   out = err_abs * kp + integral * ki + derivative * kd;
-  out = out / 10;
+  out = out / 100;
 
 
   if(out > max_speed)
   {
-    out = max_speed / 10;
+    out = max_speed / 100;
   }
   else if(out < base_speed)
   {
-    out = base_speed / 10;
+    out = base_speed / 100;
   }
   err_prev = err_abs;
 }
